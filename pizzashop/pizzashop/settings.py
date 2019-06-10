@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pizza.apps.PizzaConfig',
+    'shop.apps.ShopConfig',
 ]
 
 MIDDLEWARE = [
