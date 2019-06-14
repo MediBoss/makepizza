@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
-from pizza.models import Pizza, Topping
+from .models import Pizza, Topping
 from .serializers import PizzaSerializer, ToppingSerializer
 
 
@@ -12,7 +12,7 @@ class PizzaList(APIView):
     def get(self, request):
         ''' API Endpoint that allows pizza models to be viewed '''
 
-        pizzas = [pizaa for pizza in Pizza.objects.all()]
+        pizzas = Pizza.objects.all()
         data = PizzaSerializer(pizzas, many=True).data
         return Response(data)
 

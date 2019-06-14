@@ -18,11 +18,8 @@ from django.urls import path, include
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.conf import settings
-from rest_framework import routers
-from pizzashop.api import views
 
-router = routers.DefaultRouter()
-router.register(r'pizzas', views.P)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
