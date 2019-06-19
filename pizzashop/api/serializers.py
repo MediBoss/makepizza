@@ -1,16 +1,32 @@
 from rest_framework import serializers
+from pizza.models import PizzaOrder, Pizza, Topping
+from django.contrib.auth.models import User
 
-from .models import Pizza, Topping, PizzaOrder
 
 class ToppingSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Topping
-        fields = '__all__'
+        fields = ('name',)
+
 
 class PizzaSerializer(serializers.ModelSerializer):
+    toppings = ToppingSerializer(read_only=True, many=True)
 
-    toppins = ToppingSerializer(many=True, required=False)
     class Meta:
         model = Pizza
         fields = '__all__'
+
+
+class PizzaToppingSerializer(serializers.ModelSerializer):
+    pizza = PizzaSerializer(read_only=True, many=True)
+    topping = ToppingSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = PizzaOrder
+        fields = ('pizza', 'topping')
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'username', 'email', 'is_staff')

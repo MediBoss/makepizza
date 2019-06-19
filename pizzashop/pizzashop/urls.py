@@ -23,5 +23,6 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path(r'api/', include('api.urls')),
     url('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # allows rendering of static assets

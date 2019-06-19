@@ -1,27 +1,27 @@
 from django.shortcuts import render
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from django.shortcuts import get_object_or_404
-from .models import Pizza, Topping
-from .serializers import PizzaSerializer, ToppingSerializer
+from django.contrib.auth.models import User
+
+from rest_framework import viewsets
+
+from pizza.models import Pizza, PizzaOrder, Topping
+from api.serializers import UserSerializer, PizzaSerializer, PizzaToppingSerializer, ToppingSerializer
 
 
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-class PizzaList(APIView):
-    
-    def get(self, request):
-        ''' API Endpoint that allows pizza models to be viewed '''
 
-        pizzas = Pizza.objects.all()
-        data = PizzaSerializer(pizzas, many=True).data
-        return Response(data)
+class PizzaViewSet(viewsets.ModelViewSet):
+    queryset = Pizza.objects.all()
+    serializer_class = PizzaSerializer
 
-class PizzaDetail(APIView):
 
-    def get(self, request, pk):
+class PizzaToppingViewSet(viewsets.ModelViewSet):
+    queryset = PizzaOrder.objects.all()
+    serializer_class = PizzaToppingSerializer
 
-        pizza = get_object_or_404(Pizza, pk=pk)
-        data = PizzaSerializer(pizza).data
 
-        return Response(data)
-
+class ToppingViewSet(viewsets.ModelViewSet):
+    queryset = Topping.objects.all()
+    serializer_class = ToppingSerializer
