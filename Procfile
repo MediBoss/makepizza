@@ -1,2 +1,2 @@
-web: gunicorn pizzashop:api
+web: gunicorn pizzashop:app
 
