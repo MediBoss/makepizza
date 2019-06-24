@@ -21,7 +21,6 @@ class PizzaToppingViewSet(viewsets.ModelViewSet):
     queryset = PizzaOrder.objects.all()
     serializer_class = PizzaToppingSerializer
 
-
 class ToppingViewSet(viewsets.ModelViewSet):
     queryset = Topping.objects.all()
     serializer_class = ToppingSerializer
