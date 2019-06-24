@@ -1,2 +1,2 @@
-web: gunicorn pizzashop:app
+web: gunicorn pizzashop.wsgi --log-file -
 
